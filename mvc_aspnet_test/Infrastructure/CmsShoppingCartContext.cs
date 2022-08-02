@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using mvc_aspnet_test.Models;
 
 namespace mvc_aspnet_test.Infrastructure
 {
@@ -8,5 +9,7 @@ namespace mvc_aspnet_test.Infrastructure
             : base(options)
         { 
         }
+        public DbSet<Page> Pages { get; set; }
     }
 }
+ 
