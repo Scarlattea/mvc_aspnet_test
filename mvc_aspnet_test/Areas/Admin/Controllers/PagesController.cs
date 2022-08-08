@@ -40,6 +40,7 @@ namespace mvc_aspnet_test.Areas.Admin.Controllers
 
         //POST /admin/pages/create
         [HttpPost]
+        [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Create(Page page)
         { 
             if (ModelState.IsValid)
@@ -50,7 +51,7 @@ namespace mvc_aspnet_test.Areas.Admin.Controllers
                 var slug = await context.Pages.FirstOrDefaultAsync(x => x.Slug == page.Slug);
                 if(slug != null)
                 {
-                    ModelState.AddModelError("", "The title already exists.");
+                    ModelState.AddModelError("", "The page already exists.");
                     return View(page);
                 }
                 context.Add(page);
@@ -60,6 +61,46 @@ namespace mvc_aspnet_test.Areas.Admin.Controllers
 
                 return RedirectToAction("Index");
             }    
+            return View(page);
+        }
+
+        //GET /admin/pages/edit/5
+        public async Task<IActionResult> Edit(int id)
+        {
+            Page page = await context.Pages.FindAsync(id);
+            if (page == null)
+            {
+                return NotFound();
+            }
+            return View(page);
+        }
+
+        //POST /admin/pages/edit
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> Edit(Page page)
+        {
+            if (ModelState.IsValid)
+            {
+
+                page.Slug = page.Id == 1 ? "home" : page.Title.ToLower().Replace(" ", "-");
+
+                page.Slug = page.Title.ToLower().Replace(" ", "-");
+                page.Sorting = 100;
+
+                var slug = await context.Pages.Where(x => x.Id != page.Id).FirstOrDefaultAsync(x => x.Slug == page.Slug);
+                if (slug != null)
+                {
+                    ModelState.AddModelError("", "The page already exists.");
+                    return View(page);
+                }
+                context.Update(page);
+                await context.SaveChangesAsync();
+
+                TempData["Success"] = "The page has been edited";
+
+                return RedirectToAction("Edit", new { id = page.Id});
+            }
             return View(page);
         }
 
