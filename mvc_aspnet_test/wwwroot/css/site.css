@@ -69,3 +69,15 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/*--------------------------------------------------------------- CUSTOM CSS STARTS-*/
+table.sorting tr:not(.home){
+    cursor: pointer;
+}
+.ui-state-highlight{
+    border: 1px dashed #1861ac;
+}
+
+a:hover {
+    opacity: .3 !important; 
+}
