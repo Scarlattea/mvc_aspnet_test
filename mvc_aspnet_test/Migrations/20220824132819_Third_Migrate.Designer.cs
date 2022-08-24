@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using mvc_aspnet_test.Infrastructure;
 
 namespace mvc_aspnet_test.Migrations
 {
     [DbContext(typeof(CmsShoppingCartContext))]
-    partial class CmsShoppingCartContextModelSnapshot : ModelSnapshot
+    [Migration("20220824132819_Third_Migrate")]
+    partial class Third_Migrate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

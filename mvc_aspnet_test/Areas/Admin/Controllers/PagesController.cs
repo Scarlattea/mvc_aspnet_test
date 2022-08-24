@@ -16,6 +16,7 @@ namespace mvc_aspnet_test.Areas.Admin.Controllers
         {
             this.context = context;
         }
+
         //GET /admin/pages
         public async Task<IActionResult> Index()
         {
