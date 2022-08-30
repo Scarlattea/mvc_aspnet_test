@@ -18,11 +18,11 @@ namespace mvc_aspnet_test.Models
         [Display(Name="Category")]
         [Range(1, int.MaxValue, ErrorMessage ="You have to pick a category")]
         public int CategoryId { get; set; }
-        [FileExtension]
         public string Image { get; set; }
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
         [NotMapped]
+        [FileExtension]
         public IFormFile ImageUpload { get; set; }
     }
 }
