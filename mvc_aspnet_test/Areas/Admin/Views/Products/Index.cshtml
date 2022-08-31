@@ -1,12 +1,8 @@
-﻿@model IPagedList<Product>
-
+﻿@model IEnumerable<Product>
 
 @{
     ViewData["Title"] = "Products";
 }
-
-@using PagedList.Mvc;
-@using PagedList;
 
 <h1>Products</h1>
 
@@ -56,8 +52,6 @@
     </tbody>
 </table>
 
-@Html.PagedListPager(Model, page=> Url.Action("Index", "Products", new {page}))
-
 <div class="itt-van" style="background:red; width: 200px; height: 50px"></div>
 
-<Pagination page-count="@ViewBag.TotalPages" page-target="/admin/products" page-number="@ViewBag.PageNumber" page-range="@ViewBag.PageRange"></Pagination>*/
+<Pagination page-count="@ViewBag.TotalPages" page-target="/admin/products" page-number="@ViewBag.PageNumber" page-range="@ViewBag.PageRange"></Pagination>
