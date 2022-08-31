@@ -28,14 +28,11 @@ namespace mvc_aspnet_test.Areas.Admin.Controllers
              int pageSize = 6;
              var products = context.Products.OrderByDescending(x => x.Id).Include(x=> x.Category).Skip((p-1)*pageSize).Take(pageSize);
 
-            /*var products = context.Products.OrderByDescending(x => x.Id).Include(x => x.Category);*/
-
             ViewBag.PageNumber = p;
             ViewBag.PageRange = pageSize;
             ViewBag.TotalPages = (int)Math.Ceiling((decimal)context.Products.Count() / pageSize);
 
             return View(await products.ToListAsync());
-            /*return View(products.ToList().ToPagedList(page ?? 1,3));*/
 
         }
         //GET /admin/products/create
