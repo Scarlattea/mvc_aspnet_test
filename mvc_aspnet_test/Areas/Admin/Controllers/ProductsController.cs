@@ -15,6 +15,7 @@ namespace mvc_aspnet_test.Areas.Admin.Controllers
     public class ProductsController : Controller
     {
         private readonly CmsShoppingCartContext context;
+
         private readonly IWebHostEnvironment webHostEnvironment;
         public ProductsController(CmsShoppingCartContext context, IWebHostEnvironment webHostEnvironment)
         {
